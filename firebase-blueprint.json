@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "A multiplayer game session",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["lobby", "playing", "results"] },
+        "grid": { "type": "array", "description": "Serialized string array of the map blocks" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "string" },
+        "level": { "type": "number" }
+      },
+      "required": ["status", "grid", "createdAt", "createdBy"]
+    },
+    "Player": {
+      "title": "Player",
+      "description": "State of a player within a room",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "pos": { "type": "object", "properties": { "x": { "type": "number" }, "y": { "type": "number" } } },
+        "color": { "type": "string" },
+        "isAlive": { "type": "boolean" },
+        "isReady": { "type": "boolean" },
+        "bombsMax": { "type": "number" },
+        "flameRange": { "type": "number" },
+        "score": { "type": "number" },
+        "lastMoveAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "pos", "isAlive"]
+    },
+    "Bomb": {
+      "title": "Bomb",
+      "description": "An explosive device placed by a player",
+      "type": "object",
+      "properties": {
+        "pos": { "type": "object", "properties": { "x": { "type": "number" }, "y": { "type": "number" } } },
+        "range": { "type": "number" },
+        "ownerId": { "type": "string" },
+        "exploded": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["pos", "range", "ownerId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "rooms/{roomId}": { "schema": "Room", "description": "Room metadata and grid" },
+    "rooms/{roomId}/players/{uid}": { "schema": "Player", "description": "Real-time player positions" },
+    "rooms/{roomId}/bombs/{bombId}": { "schema": "Bomb", "description": "Active bombs collection" }
+  }
+}

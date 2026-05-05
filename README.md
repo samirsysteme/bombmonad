@@ -1,11 +1,27 @@
-<div align="center">
+# Bomb Master Monad
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A real-time multiplayer Bomberman-inspired game built with React, Vite, and Firebase.
 
-  <h1>Built with AI Studio</h2>
+## Deployment to GitHub Pages
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+If you are hosting this on GitHub Pages, follow these steps:
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+1. **Vite Base Path**: I have already set `base: './'` in `vite.config.ts`. This ensures that assets are loaded correctly regardless of your repository name.
+2. **Firebase Configuration**: 
+   - Ensure the `firebase-applet-config.json` file is present in the root directory.
+   - If you want to keep your Firebase keys private, you should use environment variables instead of the JSON file in production.
+3. **Build & Deploy**:
+   - Run `npm install`
+   - Run `npm run build`
+   - Upload the contents of the `dist` folder to your GitHub Pages branch (usually `gh-pages`).
 
-</div>
+## How to play
+- **Move**: W, A, S, D
+- **Place Bomb**: Space
+- **Goal**: Be the last one standing!
+
+## Features
+- Real-time multiplayer via Firebase Firestore.
+- Procedural map generation with different styles.
+- Sound effects for movement, explosions, and UI.
+- Professional UI with motion animations.
